@@ -8,10 +8,8 @@
 import time
 
 from collections import OrderedDict
-from types import NoneType
 from service.comm import icrud
 import misc
-import ctx
 import logging
 
 
@@ -30,9 +28,6 @@ class MongoCRUD(icrud.ICRUD):
         misc.indexing(self.__db, *indexes)
 
     def init(self, func):
-
-        if ctx.ND_PREFIX != "":
-            return self
 
         func(self, self.__db)
         return self
@@ -78,7 +73,7 @@ class MongoCRUD(icrud.ICRUD):
                 o['otype'] = 'int'
             elif isinstance(v, dict):
                 o['otype'] = 'dict'
-            elif isinstance(v, NoneType):
+            elif isinstance(v, None):
                 o['otype'] = 'None'
             else:
                 o['otype'] = 'string'

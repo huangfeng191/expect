@@ -9,7 +9,7 @@ import time
 import ctx
 
 
-class Event(object):
+class event(object):
 
     def __init__(self, func):
         self._key = func.__name__
@@ -43,9 +43,6 @@ class BindEvent(object):
 
 # mongodb 添加索引
 def indexing(db=None, *indexes):
-
-    if ctx.ND_PREFIX != "":
-        return lambda func: func
 
     if db and indexes:
 
